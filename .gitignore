@@ -1,0 +1,46 @@
+# Node modules
+node_modules/
+ 
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+
+# Coverage directory used by testing tools like Jest
+coverage/
+
+# Dependency directories
+jspm_packages/
+ 
+# Optional npm cache directory
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# Dist directory
+dist/
+
+# Build directory
+build/
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE specific files
+.vscode/
+.idea/
+*.sublime-workspace
+
+# MacOS specific files
+.DS_Store
+
+# Other files
+*.log
+*.lock
