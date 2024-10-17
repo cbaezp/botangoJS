@@ -1,14 +1,7 @@
-/* With fingerprints */
-
-// Import `puppeteer-with-fingerprints` instead of `puppeteer`
-// const puppeteer = require('puppeteer');
-// const { plugin } = require('puppeteer-with-fingerprints');
-
 import { plugin } from 'puppeteer-with-fingerprints';
 import dotenv from 'dotenv';
-// Set the service key for the plugin (you can buy it here https://bablosoft.com/directbuy/FingerprintSwitcher/2).
-// Leave an empty string to use the free version.
-//plugin.setServiceKey('');
+import { cssInjector } from './utils/cssInjector.js';  
+
 
 
 
@@ -24,10 +17,24 @@ async function main() {
       tags: ['Microsoft Windows', 'Chrome'],
     });
   
-    plugin.useFingerprint(fingerprint);
+    plugin.useProxy('198.23.239.134:6540:tfvzcruz:6zudy0o1txki', {
+        changeGeolocation: true,
+
+    })
+    plugin.useFingerprint(fingerprint,{
+        safeElementSize: true,
+    });
   
     // Omit the key option if you do not need an override:
-    await plugin.launch({ headless: false });
+
+    const browser = await plugin.launch({ headless: false });
+    const page = await browser.newPage();
+    await page.goto('https://github.com/', { waitUntil: 'networkidle0' });
+
+    await cssInjector(page);
+
+
+
   }
   
   main();
